@@ -334,6 +334,16 @@ public class Utils {
         return String.valueOf(alert_level);
     }
 
+    /*
+     *@param characteristics
+     * @return {@link byte[]}
+     *
+     */
+    public static byte[] getFingerprintLine(
+            BluetoothGattCharacteristic characteristics) {
+        byte[] line = characteristics.getValue();
+        return line;
+    }
     /**
      * Returns the Transmission power information from the characteristic
      *

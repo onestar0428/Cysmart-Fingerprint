@@ -154,6 +154,8 @@ public class Constants {
             "EXTRA_DESCRIPTOR_REPORT_REFERENCE_TYPE";
     public static final String EXTRA_CHARACTERISTIC_ERROR_MESSAGE = "com.cypress.cysmart.backgroundservices." +
             "EXTRA_CHARACTERISTIC_ERROR_MESSAGE";
+    public static final String EXTRA_FINGEPRINT_VALUE = "com.cypress.cysmart.backgroundservices." +
+            "EXTRA_FINGERPRINT_VALUE";
     /**
      * Links
      */

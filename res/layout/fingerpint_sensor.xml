@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fingerprintImageView"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/cadence"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="0">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start Scan"
+                android:id="@+id/start_scan_btn"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_weight="2"
+                android:layout_gravity="bottom|left"
+                style="@android:style/Holo.SegmentedButton" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stop Scan"
+            android:id="@+id/stop_scan_btn"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_weight="2"
+            android:layout_gravity="bottom|right"
+            style="@android:style/Holo.SegmentedButton" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

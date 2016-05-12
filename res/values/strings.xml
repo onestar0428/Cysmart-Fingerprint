@@ -301,6 +301,7 @@
     <string name="share">Share</string>
     <string name="heart_rate">Heart Rate</string>
     <string name="rgb_led">RGB LED</string>
+    <string name="fingerprint_sensor">SUNASIC FINGERPRINT SENSOR</string>
     <string name="device_info">Device Information</string>
     <string name="gatt_db">GATT DB</string>
     <string name="data_logger">Data Logger</string>

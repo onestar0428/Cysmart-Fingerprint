@@ -52,6 +52,7 @@ import com.cypress.cysmart.BLEServiceFragments.CSCService;
 import com.cypress.cysmart.BLEServiceFragments.CapsenseService;
 import com.cypress.cysmart.BLEServiceFragments.DeviceInformationService;
 import com.cypress.cysmart.BLEServiceFragments.FindMeService;
+import com.cypress.cysmart.BLEServiceFragments.FingerprintFragment;
 import com.cypress.cysmart.BLEServiceFragments.GlucoseService;
 import com.cypress.cysmart.BLEServiceFragments.HealthTemperatureService;
 import com.cypress.cysmart.BLEServiceFragments.HeartRateService;
@@ -299,7 +300,14 @@ public class CarouselFragment extends Fragment {
                         showWarningMessage();
                     }
 
-                } else {
+                }
+                // FINGERPRINT Service
+                else if (mService.getUuid().equals(UUIDDatabase.UUID_FINGERPRINT_SERVICE)//|| (mService.getUuid().equals(UUIDDatabase.UUID_FINGERPRINT_SERVICE_CUSTOM))
+                 ) {
+                    FingerprintFragment fingerprintFragment = new FingerprintFragment().create(mService);
+                    displayView(fingerprintFragment, getResources().getString(R.string.fingerprint_sensor));
+                }
+                else {
                     showWarningMessage();
                 }
             }

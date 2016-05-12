@@ -241,6 +241,14 @@ public class UUIDDatabase {
             .fromString(GattAttributes.OTA_CHARACTERISTIC);
 
     /**
+     * FINGERPRINT related UUID
+     */
+    public final static UUID UUID_FINGERPRINT_SERVICE = UUID
+            .fromString(GattAttributes.FINGERPRINT_SERVICE);
+    public final static UUID UUID_FINGERPRINT = UUID
+            .fromString(GattAttributes.FINGERPRINT);
+
+    /**
      * Descriptor UUID
      */
     public final static UUID UUID_CLIENT_CHARACTERISTIC_CONFIG = UUID

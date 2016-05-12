@@ -218,7 +218,6 @@ public class ServiceDiscoveryFragment extends Fragment {
                     mGattSet = true;
                     mGattServiceData.add(mCurrentServiceData);
                 }
-
             } else {
                 mCurrentServiceData.put(LIST_UUID, gattService);
                 mGattServiceMasterData.add(mCurrentServiceData);
@@ -305,64 +304,63 @@ public class ServiceDiscoveryFragment extends Fragment {
                 }
 
             } //Optimization code for HID
-            else if (uuid.equals(UUIDDatabase.UUID_HID_SERVICE)){
+            else if (uuid.equals(UUIDDatabase.UUID_HID_SERVICE)) {
                 /**
                  * Special handling for KITKAT devices
                  */
                 if (android.os.Build.VERSION.SDK_INT < 21) {
                     Logger.e("Kitkat RDK device found");
-                    List<BluetoothGattCharacteristic> allCharacteristics=
-                        gattService.getCharacteristics();
-                    List<BluetoothGattCharacteristic> RDKCharacteristics=new
+                    List<BluetoothGattCharacteristic> allCharacteristics =
+                            gattService.getCharacteristics();
+                    List<BluetoothGattCharacteristic> RDKCharacteristics = new
                             ArrayList<BluetoothGattCharacteristic>();
-                    List<BluetoothGattDescriptor> RDKDescriptors=new
-                        ArrayList<BluetoothGattDescriptor>();
+                    List<BluetoothGattDescriptor> RDKDescriptors = new
+                            ArrayList<BluetoothGattDescriptor>();
 
 
                     //Find all Report characteristics
-                    for(BluetoothGattCharacteristic characteristic:allCharacteristics){
-                        if(characteristic.getUuid().equals(UUIDDatabase.UUID_REP0RT)){
+                    for (BluetoothGattCharacteristic characteristic : allCharacteristics) {
+                        if (characteristic.getUuid().equals(UUIDDatabase.UUID_REP0RT)) {
                             RDKCharacteristics.add(characteristic);
                         }
                     }
 
                     //Find all Report descriptors
-                    for(BluetoothGattCharacteristic rdkcharacteristic:RDKCharacteristics){
+                    for (BluetoothGattCharacteristic rdkcharacteristic : RDKCharacteristics) {
                         List<BluetoothGattDescriptor> descriptors = rdkcharacteristic.
                                 getDescriptors();
-                        for(BluetoothGattDescriptor descriptor:descriptors){
+                        for (BluetoothGattDescriptor descriptor : descriptors) {
                             RDKDescriptors.add(descriptor);
                         }
                     }
                     /**
                      * Wait for all  descriptors to receive
                      */
-                    if(RDKDescriptors.size()==RDKCharacteristics.size()*2){
+                    if (RDKDescriptors.size() == RDKCharacteristics.size() * 2) {
 
-                        for(int pos=0,descPos=0;descPos<RDKCharacteristics.size();pos++,descPos++){
-                            BluetoothGattCharacteristic rdkcharacteristic=
+                        for (int pos = 0, descPos = 0; descPos < RDKCharacteristics.size(); pos++, descPos++) {
+                            BluetoothGattCharacteristic rdkcharacteristic =
                                     RDKCharacteristics.get(descPos);
                             //Mapping the characteristic and descriptors
-                            Logger.e("Pos-->"+pos);
-                            Logger.e("Pos+1-->"+(pos+1));
-                            BluetoothGattDescriptor clientdescriptor=RDKDescriptors.get(pos);
-                            BluetoothGattDescriptor reportdescriptor=RDKDescriptors.get(pos+1);
-                            if(!rdkcharacteristic.getDescriptors().contains(clientdescriptor))
-                            rdkcharacteristic.addDescriptor(clientdescriptor);
-                            if(!rdkcharacteristic.getDescriptors().contains(reportdescriptor))
-                            rdkcharacteristic.addDescriptor(reportdescriptor);
+                            Logger.e("Pos-->" + pos);
+                            Logger.e("Pos+1-->" + (pos + 1));
+                            BluetoothGattDescriptor clientdescriptor = RDKDescriptors.get(pos);
+                            BluetoothGattDescriptor reportdescriptor = RDKDescriptors.get(pos + 1);
+                            if (!rdkcharacteristic.getDescriptors().contains(clientdescriptor))
+                                rdkcharacteristic.addDescriptor(clientdescriptor);
+                            if (!rdkcharacteristic.getDescriptors().contains(reportdescriptor))
+                                rdkcharacteristic.addDescriptor(reportdescriptor);
                             pos++;
                         }
                     }
                     currentServiceData.put(LIST_UUID, gattService);
                     mGattServiceMasterData.add(currentServiceData);
                     mGattServiceData.add(currentServiceData);
-                }else{
+                } else {
                     currentServiceData.put(LIST_UUID, gattService);
                     mGattServiceMasterData.add(currentServiceData);
                     mGattServiceData.add(currentServiceData);
                 }
-
             }else {
                 currentServiceData.put(LIST_UUID, gattService);
                 mGattServiceMasterData.add(currentServiceData);

@@ -74,6 +74,7 @@ public class GattAttributes {
     public static final String SCAN_PARAMETERS_SERVICE = "00001813-0000-1000-8000-00805f9b34fb";
     // public static final String OTA_UPDATE_SERVICE = "00060000-0000-1000-8000-00805f9b34fb";
     public static final String OTA_UPDATE_SERVICE = "00060000-f8ce-11e4-abf4-0002a5d5c51b";
+    public static final String FINGERPRINT_SERVICE = "62e78a32-187b-11e6-b6ba-3e1d05defe78";
     /**
      * Unused service UUIDS
      */
@@ -195,6 +196,11 @@ public class GattAttributes {
      */
     //public static final String OTA_CHARACTERISTIC = "00060001-0000-1000-8000-00805F9B34fb";
     public static final String OTA_CHARACTERISTIC = "00060001-f8ce-11e4-abf4-0002a5d5c51b";
+
+    /**
+     * fingerprint characteristic*
+     */
+    public static final String FINGERPRINT =        "62e78d0c-187b-11e6-b6ba-3e1d05defe78";
     /**
      * Descriptor UUID's
      */
@@ -583,6 +589,7 @@ public class GattAttributes {
         attributesUUID.put(UUIDDatabase.UUID_POLLEN_CONCENTRATION, "Pollen Concentration");
         attributesUUID.put(UUIDDatabase.UUID_POSITION_QUALITY, "Position Quality");
         attributesUUID.put(UUIDDatabase.UUID_PRESSURE, "Pressure");
+        attributesUUID.put(UUIDDatabase.UUID_FINGERPRINT_SERVICE, "Fingerprint");
 
 
         // Descriptors
@@ -640,6 +647,9 @@ public class GattAttributes {
         attributesImageMap.put(UUIDDatabase.UUID_RSC_SERVICE, R.drawable.rsc);
         attributesImageMap.put(UUIDDatabase.UUID_CSC_SERVICE, R.drawable.cpc);
         attributesImageMap.put(UUIDDatabase.UUID_BAROMETER_SERVICE, R.drawable.sensor_hub);
+        attributesImageMap.put(UUIDDatabase.UUID_FINGERPRINT_SERVICE, R.drawable.capsense_buttons); // TODO:
+//        attributesImageMap.put(UUIDDatabase.UUID_FINGERPRINT_SERVICE_CUSTOM, R.drawable.capsense_buttons); // TODO:
+
         // CapSense Image Mapping
         attributesCapSenseImageMap.put(UUIDDatabase.UUID_CAPSENSE_SERVICE, R.drawable.capsense);
         attributesCapSenseImageMap.put(UUIDDatabase.UUID_CAPSENSE_PROXIMITY,
@@ -655,6 +665,7 @@ public class GattAttributes {
                 R.drawable.capsense_slider);
         attributesCapSenseImageMap.put(UUIDDatabase.UUID_CAPSENSE_BUTTONS_CUSTOM,
                 R.drawable.capsense_buttons);
+
         //RDK
         attributesImageMap.put(UUIDDatabase.UUID_HID_SERVICE,
                 R.drawable.unknown);

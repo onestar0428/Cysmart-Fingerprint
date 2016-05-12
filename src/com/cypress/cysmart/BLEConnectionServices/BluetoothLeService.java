@@ -852,6 +852,11 @@ public class BluetoothLeService extends Service {
                 .equals(UUIDDatabase.UUID_BAROMETER_THRESHOLD_FOR_INDICATION)) {
             mBundle.putInt(Constants.EXTRA_SPRESSURE_THRESHOLD_VALUE,
                     SensorHubParser.getThresholdValue(characteristic));
+        } else if (characteristic.getUuid()
+                .equals(UUIDDatabase.UUID_FINGERPRINT)//||characteristic.getUuid().equals(UUIDDatabase.UUID_FINGERPRINT_SERVICE_CUSTOM)
+          ) {
+            mBundle.putByteArray(Constants.EXTRA_FINGEPRINT_VALUE,
+                    Utils.getFingerprintLine(characteristic));
         }
 
 
