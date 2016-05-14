@@ -52,6 +52,7 @@ public class FingerprintFragment extends Fragment {
     private ImageView mFingerprint;
     private Button mStartButton;
     private Button mStopButton;
+    private byte[] fingerprint_values;
 
     //ProgressDialog
     private ProgressDialog mProgressDialog;
@@ -104,9 +105,11 @@ public class FingerprintFragment extends Fragment {
             } else
             if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
                 if (extras.containsKey(Constants.EXTRA_FINGEPRINT_VALUE)) {
-                    byte[] fingerprint_values = extras
+                    fingerprint_values = extras
                             .getByteArray(Constants.EXTRA_FINGEPRINT_VALUE);
                     //CapsenseServiceProximity.displayLiveData(received_proximity_rate);
+                    // display it
+                    updateFingerprintImage();
                 }
             }
 
@@ -368,6 +371,38 @@ public class FingerprintFragment extends Fragment {
 //            setDefaultColorPickerPositionColor();
 //
 //        }
+    }
+    private static Bitmap getBitmapFromPgm(byte[] grays, int width, int height){
 
+        // Create pixel array, and expand 8 bit gray to ARGB_8888
+        int[] pixels = new int[width  * height];
+        int i = 0;
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                int gray = grays[i] & 0xff;
+                pixels[i] = 0xff000000 | gray << 16 | gray << 8 | gray;
+                i++;
+            }
+        }
+        Bitmap pgm = Bitmap.createBitmap(pixels, width, height, android.graphics.Bitmap.Config.ARGB_8888);
+        return pgm;
+    }
+    private byte value_offset;
+    private void updateFingerprintImage() {
+
+        int index = (int)(fingerprint_values[0] & 0xff) + (int)((fingerprint_values[1] << 8) & 0xff);
+        if ( index != 95 && index != 191) return;
+        byte[] fp = new byte[192*192];
+        int k = 0;
+        for ( int i = 0; i < 192; i ++ ) {
+            for ( int j = 0; j < 192; j ++) {
+                fp[k++] = (byte)(i + j + value_offset);
+            }
+        }
+        value_offset+=30;
+        Bitmap pgm= getBitmapFromPgm( fp, 192, 192);
+        mFingerprint.setImageBitmap(pgm);
+        // this is background thread, use postInvalidate
+        mFingerprint.postInvalidate();
     }
 }
